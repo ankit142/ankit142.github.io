@@ -1,80 +1,37 @@
-// Array to store notes
-const notes = [];
-
-// Elements
-const notesContainer = document.getElementById('notes-container');
+// Get elements
 const editor = document.getElementById('editor');
 const saveButton = document.getElementById('save-button');
 
-// Function to render notes
-function renderNotes() {
-    notesContainer.innerHTML = '';
-    notes.forEach((note, index) => {
-        const noteElement = document.createElement('div');
-        noteElement.className = 'note';
-        noteElement.innerHTML = `
-            <div class="note-header">
-                <h3>Note ${index + 1}</h3>
-                <button class="delete-button" onclick="deleteNote(${index})">Delete</button>
-            </div>
-            <div class="note-content">${note}</div>
-        `;
-        notesContainer.appendChild(noteElement);
-    });
-}
+// Event listener for the Save button
+saveButton.addEventListener('click', () => {
+    const userInput = editor.value;
 
-function manualSave() {
-    saveNote(); // Call the existing saveNote function
-}
-const manualSaveButton = document.getElementById('save-button');
-manualSaveButton.addEventListener('click', manualSave);
-
-function saveNote() {
-    const newNote = editor.value.trim();
-    if (newNote !== '') {
-        notes.push(newNote);
-        renderNotes();
-        editor.value = '';
-
-        // Perform a POST request to your serverless function in the .netlify directory
-        fetch('/saveNote', {  // Update the path here
-            method: 'POST',
-            body: JSON.stringify({ note: newNote }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+    // Send a POST request to save the user input on the server
+    fetch('/save', {
+        method: 'POST',
+        body: `userInput=${userInput}`,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+        .then((response) => response.text())
+        .then((data) => {
+            console.log(data); // Log the server's response
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data.message); // Log the server's response
-            })
-            .catch((error) => {
-                console.error('Error saving note:', error);
-            });
-    }
-}
+        .catch((error) => {
+            console.error('Error saving user input:', error);
+        });
+});
 
-// Automatically save the note every 10 seconds
-setInterval(() => {
-    saveNote();
-}, 10000);
-
-// Function to save a new note
-
-
-// Function to delete a note
-function deleteNote(index) {
-    notes.splice(index, 1);
-    renderNotes();
-}
-
-// Event listeners
-//saveButton.addEventListener('click', saveNote);
-
-// Initial render
-//renderNotes();
+// Function to load and display saved input from the server when the page loads
+window.addEventListener('load', () => {
+    // Send a GET request to load the saved user input from the server
+    fetch('/load')
+        .then((response) => response.text())
+        .then((data) => {
+            editor.value = data;
+        })
+        .catch((error) => {
+            console.error('Error loading user input:', error);
+        });
+});
