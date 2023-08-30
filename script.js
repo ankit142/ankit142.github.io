@@ -7,7 +7,7 @@ saveButton.addEventListener('click', () => {
     const userInput = editor.value;
 
     // Send a POST request to save the user input on the server
-    fetch('/save', {
+    fetch('/.netlify/functions/save', { // Update the path to your save function
         method: 'POST',
         body: `userInput=${userInput}`,
         headers: {
@@ -26,7 +26,7 @@ saveButton.addEventListener('click', () => {
 // Function to load and display saved input from the server when the page loads
 window.addEventListener('load', () => {
     // Send a GET request to load the saved user input from the server
-    fetch('/load')
+    fetch('/.netlify/functions/load') // Update the path to your load function
         .then((response) => response.text())
         .then((data) => {
             editor.value = data;
