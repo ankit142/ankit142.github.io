@@ -13,7 +13,7 @@ saveButton.addEventListener('click', () => {
     const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt';
 
     fetch(apiUrl, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Authorization': `token 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`,
             'Accept': 'application/vnd.github.v3+json',
