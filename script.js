@@ -33,7 +33,7 @@ saveButton.addEventListener('click', () => {
         }); */
     // Initialize GitHub with your personal access token
 const github = new GitHub({
-    token: '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', // Replace with your personal access token
+    token: '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', // Replace with your personal access token
 });
 
 // Get the repository
