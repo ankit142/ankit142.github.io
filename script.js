@@ -15,7 +15,7 @@ saveButton.addEventListener('click', () => {
     fetch(apiUrl, {
         method: 'PUT',
         headers: {
-            'Authorization': 'token ${token}',
+            'Authorization': `token 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`,
             'Accept': 'application/vnd.github.v3+json',
         },
         body: JSON.stringify({
