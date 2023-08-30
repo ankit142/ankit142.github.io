@@ -10,7 +10,7 @@ saveButton.addEventListener('click', () => {
     const githubUsername = 'ankit142'; // Replace with your GitHub username
     const repoName = 'ankit142.github.io'; // Replace with your repository name
     const token = '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'; // Replace with your personal access token
-    const apiUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/contents/note.txt`;
+    const apiUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/note.txt`;
 
     fetch(apiUrl, {
         method: 'PUT',
@@ -36,7 +36,7 @@ saveButton.addEventListener('click', () => {
 // Function to load and display saved input from GitHub when the page loads
 window.addEventListener('load', () => {
     // Send a GET request to load the saved user input from GitHub
-    const githubUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/contents/note.txt`;
+    const githubUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/note.txt`;
 
     fetch(githubUrl)
         .then((response) => response.json())
