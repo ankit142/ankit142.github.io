@@ -4,7 +4,7 @@ const saveButton = document.getElementById('save-button');
 
 // Event listener for the Save button
 saveButton.addEventListener('click', () => {
-    const userInput = editor.value;
+    /* const userInput = editor.value;
 
     // Send a PUT request to save the user input on GitHub
     const githubUsername = 'ankit142'; // Replace with your GitHub username
@@ -30,7 +30,37 @@ saveButton.addEventListener('click', () => {
         })
         .catch((error) => {
             console.error('Error saving user input:', error);
-        });
+        }); */
+    // Initialize GitHub with your personal access token
+const github = new GitHub({
+    token: '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', // Replace with your personal access token
+});
+
+// Get the repository
+const repo = github.getRepo('ankit142', 'ankit142.github.io');
+
+// Get the content of the existing file
+repo.getContents('main', 'note.txt', true) // 'main' is the branch name
+    .then((file) => {
+        const userInput = editor.value;
+        const content = btoa(userInput); // Encode text to base64
+
+        // Commit the changes
+        return repo.updateFile(
+            'main',
+            'note.txt',
+            content,
+            file.data.sha, // Use the SHA of the existing file
+            'Update note.txt', // Commit message
+        );
+    })
+    .then(() => {
+        console.log('Text saved successfully');
+    })
+    .catch((error) => {
+        console.error('Error saving user input:', error);
+    });
+
 });
 
 // Function to load and display saved input from GitHub when the page loads
