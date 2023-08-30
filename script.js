@@ -32,7 +32,7 @@ saveButton.addEventListener('click', () => {
             console.error('Error saving user input:', error);
         }); */
     // Initialize GitHub with your personal access token
-const github = new GitHub({
+/* const github = new GitHub({
     token: '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', // Replace with your personal access token
 });
 
@@ -59,7 +59,53 @@ repo.getContents('main', 'note.txt', true) // 'main' is the branch name
     })
     .catch((error) => {
         console.error('Error saving user input:', error);
-    });
+    }); */
+const githubUsername = 'ankit142'; // Replace with your GitHub username
+    const repoName = 'ankit142.github.io'; // Replace with your repository name
+    const token = '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'; 
+    
+    const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt'// Replace with your personal access token
+    const userInput = document.getElementById('editor').value;
+
+// Encode user input to base64
+const encodedInput = btoa(userInput);
+
+// Create a message for the commit
+const commitMessage = 'Update note.txt'; // You can customize the message
+
+// Retrieve the existing file content and SHA (optional)
+fetch(apiUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    const sha = data.sha; // SHA of the existing file (if it exists)
+
+    // Create or update the file on GitHub
+    fetch(apiUrl, {
+      method: 'PUT', // Use 'POST' if you want to create a new file
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+      },
+      body: JSON.stringify({
+        message: commitMessage,
+        content: encodedInput,
+        sha: sha, // Set to null if creating a new file
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          console.log('Text saved successfully');
+        } else {
+          console.error('Failed to save text');
+        }
+      })
+      .catch((error) => {
+        console.error('Error saving user input:', error);
+      });
+  })
+  .catch((error) => {
+    console.error('Error retrieving existing file content:', error);
+  });
 
 });
 
