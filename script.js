@@ -21,7 +21,7 @@ saveButton.addEventListener('click', () => {
         body: JSON.stringify({
             message: 'Update note.txt', // Commit message
             content: btoa(userInput), // Encode text to base64
-            sha: 'sha-of-existing-file', // Get the SHA of the existing file from GitHub or create a new one
+            sha: 'https://github.com/ankit142/ankit142.github.io/raw/main/note.txt', // Get the SHA of the existing file from GitHub or create a new one
         }),
     })
         .then((response) => response.text())
