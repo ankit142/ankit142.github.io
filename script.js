@@ -33,18 +33,23 @@ function saveNote() {
     const newNote = editor.value.trim();
     if (newNote !== '') {
         notes.push(newNote);
-        //renderNotes();
+        renderNotes();
         editor.value = '';
 
-        // Perform a POST request to your serverless function
-        fetch('/.netlify/saveNote', {
+        // Perform a POST request to your serverless function in the .netlify directory
+        fetch('/.netlify/functions/saveNote', {  // Update the path here
             method: 'POST',
             body: JSON.stringify({ note: newNote }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then((data) => {
                 console.log(data.message); // Log the server's response
             })
