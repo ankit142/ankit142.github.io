@@ -23,6 +23,36 @@ function renderNotes() {
     });
 }
 
+function saveNote() {
+    const newNote = editor.value.trim();
+    if (newNote !== '') {
+        notes.push(newNote);
+        renderNotes();
+        editor.value = '';
+
+        // Perform a POST request to your serverless function
+        fetch('/.netlify/functions/saveNote', {
+            method: 'POST',
+            body: JSON.stringify({ note: newNote }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.message); // Log the server's response
+            })
+            .catch((error) => {
+                console.error('Error saving note:', error);
+            });
+    }
+}
+
+// Automatically save the note every 10 seconds
+setInterval(() => {
+    saveNote();
+}, 10000);
+
 // Function to save a new note
 function saveNote() {
     const newNote = editor.value.trim();
