@@ -37,7 +37,7 @@ function saveNote() {
         editor.value = '';
 
         // Perform a POST request to your serverless function in the .netlify directory
-        fetch('/.netlify/functions/saveNote', {  // Update the path here
+        fetch('/saveNote', {  // Update the path here
             method: 'POST',
             body: JSON.stringify({ note: newNote }),
             headers: {
