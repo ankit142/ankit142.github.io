@@ -23,6 +23,12 @@ function renderNotes() {
     });
 }
 
+function manualSave() {
+    saveNote(); // Call the existing saveNote function
+}
+const manualSaveButton = document.getElementById('save-button');
+manualSaveButton.addEventListener('click', manualSave);
+
 function saveNote() {
     const newNote = editor.value.trim();
     if (newNote !== '') {
