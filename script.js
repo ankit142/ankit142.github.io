@@ -60,14 +60,7 @@ setInterval(() => {
 }, 10000);
 
 // Function to save a new note
-function saveNote() {
-    const newNote = editor.value.trim();
-    /* if (newNote !== '') {
-        notes.push(newNote);
-        renderNotes();
-        editor.value = '';
-    } */
-}
+
 
 // Function to delete a note
 function deleteNote(index) {
