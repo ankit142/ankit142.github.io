@@ -33,7 +33,7 @@ function saveNote() {
     const newNote = editor.value.trim();
     if (newNote !== '') {
         notes.push(newNote);
-        renderNotes();
+        //renderNotes();
         editor.value = '';
 
         // Perform a POST request to your serverless function
