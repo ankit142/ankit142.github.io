@@ -10,7 +10,7 @@ saveButton.addEventListener('click', () => {
     const githubUsername = 'ankit142'; // Replace with your GitHub username
     const repoName = 'ankit142.github.io'; // Replace with your repository name
     const token = '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'; // Replace with your personal access token
-    const apiUrl = 'https://api.github.com/repos/${githubUsername}/${repoName}/contents/note.txt';
+    const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt';
 
     fetch(apiUrl, {
         method: 'PUT',
