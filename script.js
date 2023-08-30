@@ -37,7 +37,7 @@ function saveNote() {
         editor.value = '';
 
         // Perform a POST request to your serverless function
-        fetch('/.netlify/functions/saveNote', {
+        fetch('/.netlify/saveNote', {
             method: 'POST',
             body: JSON.stringify({ note: newNote }),
             headers: {
@@ -72,4 +72,4 @@ function deleteNote(index) {
 //saveButton.addEventListener('click', saveNote);
 
 // Initial render
-renderNotes();
+//renderNotes();
