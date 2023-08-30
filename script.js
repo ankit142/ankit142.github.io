@@ -9,13 +9,13 @@ saveButton.addEventListener('click', () => {
     // Send a PUT request to save the user input on GitHub
     const githubUsername = 'ankit142'; // Replace with your GitHub username
     const repoName = 'ankit142.github.io'; // Replace with your repository name
-    const token = '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'; // Replace with your personal access token
+    const token = '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'; // Replace with your personal access token
     const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt';
 
     fetch(apiUrl, {
         method: 'PUT',
         headers: {
-            'Authorization': `token ${token}`,
+            'Authorization': 'token ${token}',
             'Accept': 'application/vnd.github.v3+json',
         },
         body: JSON.stringify({
