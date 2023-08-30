@@ -36,7 +36,7 @@ saveButton.addEventListener('click', () => {
 // Function to load and display saved input from GitHub when the page loads
 window.addEventListener('load', () => {
     // Send a GET request to load the saved user input from GitHub
-    const githubUrl = `https://api.github.com/repos/${githubUsername}/${repoName}/note.txt`;
+    const githubUrl = `https://api.github.com/repos/ankit142/ankit142.github.io/note.txt`;
 
     fetch(githubUrl)
         .then((response) => response.json())
