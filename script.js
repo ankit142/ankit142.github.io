@@ -69,7 +69,7 @@ function deleteNote(index) {
 }
 
 // Event listeners
-saveButton.addEventListener('click', saveNote);
+//saveButton.addEventListener('click', saveNote);
 
 // Initial render
 renderNotes();
