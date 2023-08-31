@@ -22,7 +22,7 @@ saveButton.addEventListener('click', () => {
             const response = await fetch(apiUrl, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token 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`,
+                    'Authorization': `token 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`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
