@@ -4,7 +4,7 @@ const saveButton = document.getElementById('save-button');
 
 // Event listener for the Save button
 saveButton.addEventListener('click', () => {
-    updateFile();
+    
 const userInput = editor.value;
 const encodedInput = btoa(userInput);
 const token = "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"; // Replace with your personal access token
@@ -39,6 +39,8 @@ const updateFile = async () => {
     } catch (error) {
         console.error('Error updating file:', error);
     }
+
+    updateFile();
 };
     // Initialize GitHub with your personal access token
 /* const github = new GitHub({
