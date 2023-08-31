@@ -62,7 +62,7 @@ repo.getContents('main', 'note.txt', true) // 'main' is the branch name
     }); */
 const githubUsername = 'ankit142'; // Replace with your GitHub username
     const repoName = 'ankit142.github.io'; // Replace with your repository name
-    const token = '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'; 
+    const token = "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"; 
     
     const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt'// Replace with your personal access token
     const userInput = document.getElementById('editor').value;
