@@ -89,7 +89,7 @@ fetch(apiUrl)
       body: JSON.stringify({
         message: commitMessage,
         content: encodedInput,
-        sha: sha, // Set to null if creating a new file
+        sha: 'https://github.com/ankit142/ankit142.github.io/raw/main/note.txt', // Set to null if creating a new file
       }),
     })
       .then((response) => {
