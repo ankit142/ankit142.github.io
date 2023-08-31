@@ -6,7 +6,6 @@ saveButton.addEventListener('click', () => {
     const userInput = editor.value;
     const encodedInput = btoa(userInput);
 
-    // Replace 'YOUR_PERSONAL_ACCESS_TOKEN' with your actual GitHub personal access token
     const token = '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';
     const apiUrl = 'https://api.github.com/repos/ankit142/ankit142.github.io/contents/note.txt';
 
@@ -23,7 +22,7 @@ saveButton.addEventListener('click', () => {
             const response = await fetch(apiUrl, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `token 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`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
